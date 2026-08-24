@@ -29,8 +29,8 @@ All parameters are literature-informed illustrative values, not fitted to any me
 
 If you use this model or code, please cite both the paper and the software record:
 
-- Paper (Zenodo preprint DOI): _pending — will be filled in on publish_
-- Code (Zenodo software DOI): _pending — will be filled in on publish_
+- Paper (Zenodo preprint DOI): [10.5281/zenodo.22073391](https://doi.org/10.5281/zenodo.22073391)
+- Code (Zenodo software DOI): [10.5281/zenodo.22073393](https://doi.org/10.5281/zenodo.22073393)
 
 ## License
 

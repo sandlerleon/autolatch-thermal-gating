@@ -1,19 +1,23 @@
-# AutoLatch — Thermally Gated Autocatalytic Kinetics in Flowing Media
+# AutoLatch — Coupled Thermal Activation and Autocatalytic Cure Kinetics
 
 **Author:** Leon Sandler, Independent Researcher
-**Target journal:** npj Thermal Science and Engineering (Nature Portfolio, open access)
+**Preprint server:** ChemRxiv
+**Target journal:** Macromolecular Theory and Simulations (Wiley)
 **Article type:** Theoretical / computational study — primary evidence is mathematical and numerical, not experimental.
 
-## Abstract
+> **Version 2** of this model. The original draft (retained in `manuscript/AutoLatch_npj_ThermSciEng_Manuscript.docx`) used a prescribed release-availability function and an isothermal assumption, and was submitted to npj Thermal Science and Engineering. Peer-review feedback on that draft — thermal transients/exotherm neglected, the release function lacking physical justification, an arbitrarily scaled control comparison, a structural (not predictive) induction result, and a single dimensionless ratio being insufficient to organize the system — motivated this substantially revised v2, now targeting ChemRxiv (preprint) and Wiley's *Macromolecular Theory and Simulations* (peer review).
 
-Delayed transformation of a flowing reactive material into a solid phase is limited, in most existing thermal-management approaches, by a basic trade-off: reaction mechanisms fast enough to complete transformation in a practical window also tend to permit some conversion during transport, because conversion begins gradually from the moment of mixing under monotonic heat accumulation rather than being withheld until a defined thermal threshold is crossed. We formulate and computationally analyze a coupled model in which a discrete thermal gate, H(T − T_melt), controls release of a reaction-triggering species into an autocatalytic (Kamal–Sourour) cure reaction, and ask whether the coupling is predicted to produce a sharper, more controllable separation between a stable transport regime and a rapidly solidifying regime than either mechanism achieves alone. A full 2×2 computational comparison across gated/ungated and autocatalytic/first-order kinetics predicts that the coupled system uniquely minimizes premature conversion during a nominal 25-minute transport period (α ≈ 0.09) while achieving the sharpest transition of the four cases (S = 1.84); the conventional (ungated, first-order) baseline is predicted to reach α ≈ 0.88 with S ≈ 20.6 under the same conditions. A dimensionless coupling ratio, Λ = τ_release/τ_cure — analogous to a Damköhler number for this thermally gated reactive-transport problem — organizes the parameter space and reveals that predicted transition sharpness and absolute transformation time can diverge at large Λ, meaning a favorable relative sharpness metric alone does not guarantee the transformation completes within a practical absolute time. Monte Carlo propagation of joint parameter uncertainty indicates the reaction-kinetics parameters, not the thermal trigger, dominate predicted performance variability under the illustrative ranges used. A non-ideal (finite-width) thermal gate is also analyzed, predicting that a broader activation range reduces premature conversion at the cost of slower completion — a quantifiable trade-off relevant to real phase-change materials with a melting range rather than a sharp transition point. Three falsifiable predictions, each paired with a standard dynamic-DSC or rheo-DSC validation protocol, are stated for future experimental testing.
+## Abstract (v2)
+
+Delayed transformation of a reactive material into a solid phase is limited, in most thermal-management approaches, by a basic trade-off between transport stability and transformation speed. We formulate and computationally analyze a coupled zero-dimensional model in which (i) a lumped thermal energy balance governs the fluid element's temperature, including exothermic self-heating from the reaction itself; (ii) release of a reaction-triggering species follows a physically motivated first-order relaxation toward a temperature-dependent, Arrhenius-rate-controlled saturation level, rather than a prescribed availability function; and (iii) the triggered reaction follows Kamal–Sourour autocatalytic kinetics. Four dimensionless groups — Λ=0.911 (release-to-reaction timescale ratio), Θ=0.454 (thermal-to-reaction timescale ratio), ψ=10.08 (reduced exothermicity), and Ar=18.9 (activation-sensitivity number) — organize the parameter space. An objectively matched (root-solved, not arbitrarily scaled) comparison against a first-order control shows the coupled autocatalytic system is Pareto-optimal: none of 60 sampled first-order rate constants simultaneously matches or beats it on both premature conversion and completion time. A two-parameter regime map over (Θ, Λ) identifies thermal-limited, release-limited, and reaction-limited regions, with peak exothermic overshoots up to 204°C above setpoint in the thermal-limited region. Because complete suppression of conversion below the nominal activation threshold is a structural consequence of the idealized (zero-width) gate rather than an independent prediction, the falsifiable claim is reframed around a finite-width thermal gate: increasing gate width from 0.5°C to 15°C is predicted to reduce premature conversion (α at t=25 min falling from 0.073 to 0.039) at the cost of slower completion (t90 rising from 34.1 to 40.4 min). Vectorized Monte Carlo propagation of joint uncertainty across nine kinetic, release, and thermal parameters (N=20,000) indicates 69.9% of draws satisfy both a minimum induction time and a 75-minute completion target, with reaction-kinetics parameters (Ea2, Spearman r=0.69) dominating predicted variance. Three falsifiable predictions, each paired with a standard dynamic-DSC or rheo-DSC validation protocol, are stated for future experimental testing.
 
 ## Repository contents
 
 ```
-manuscript/   AutoLatch_npj_ThermSciEng_Manuscript.docx  (CC BY 4.0)
-code/         theoretical_study.py                       (MIT)
-figures/      generated on run — every Result 1-9 figure in the manuscript
+manuscript/   AutoLatch_ChemRxiv_WileyMTS_Manuscript.docx   (CC BY 4.0, current v2)
+              AutoLatch_npj_ThermSciEng_Manuscript.docx     (CC BY 4.0, superseded v1, kept for record)
+code/         theoretical_study.py                          (MIT)
+figures/      generated on run — every figure (f0, t1-t9) in the v2 manuscript
 ```
 
 ## Reproducing the figures
@@ -27,10 +31,10 @@ All parameters are literature-informed illustrative values, not fitted to any me
 
 ## Citation
 
-If you use this model or code, please cite both the paper and the software record:
+If you use this model or code, please cite both the paper and the software record (concept DOIs shown below always resolve to the latest version):
 
-- Paper (Zenodo preprint DOI): [10.5281/zenodo.22073391](https://doi.org/10.5281/zenodo.22073391)
-- Code (Zenodo software DOI): [10.5281/zenodo.22073393](https://doi.org/10.5281/zenodo.22073393)
+- Paper (Zenodo preprint, concept DOI): [10.5281/zenodo.22073390](https://doi.org/10.5281/zenodo.22073390) — latest version: [10.5281/zenodo.22240092](https://doi.org/10.5281/zenodo.22240092)
+- Code (Zenodo software, concept DOI): [10.5281/zenodo.22073392](https://doi.org/10.5281/zenodo.22073392) — latest version: [10.5281/zenodo.22240070](https://doi.org/10.5281/zenodo.22240070)
 
 ## License
 

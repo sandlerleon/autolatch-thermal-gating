@@ -45,7 +45,7 @@ print("  ungated autocatalytic baseline: alpha25 = %.4f  t90 = %.2f  storage con
 
 # ================================================================== E1 capsule population
 print("\n=== E1 capsule-population model ===")
-K = 61
+K = 801                                                      # fine quantiles: K = 61 under-resolved the tail of the Gaussian
 z = norm.ppf((np.arange(K) + 0.5) / K)                      # deterministic Gaussian quantiles of the melt temperature
 W_CAP = 0.5                                                  # each capsule has a near-step gate
 sigmas = [0.0, 1.0, 2.0, 4.0, 6.0]
@@ -241,8 +241,7 @@ im = ax[0].pcolormesh(widths, Tops, np.where(viable, 1.0, 0.0) + 0.5 * ((leak[No
 cs = ax[0].contour(widths, Tops, t90g, levels=[75], colors="k", linewidths=1.5); ax[0].clabel(cs, fmt="t₉₀ = 75 min")
 ax[0].axvline(widths[np.max(np.where(leak <= EPS_LEAK))] if w_crit else 0, color="red", ls="--", lw=1.5)
 ax[0].set_xscale("log"); ax[0].set_xlabel("Gate width w (°C)"); ax[0].set_ylabel("Operating temperature T∞ (°C)")
-ax[0].set_title("(a) Dark green: viable (leakage ≤ %.2f, t₁₀ ≥ 5, t₉₀ ≤ 75 min);
-light green: leakage met, t₉₀ not" % EPS_LEAK, fontsize=9.5)
+ax[0].set_title(("(a) Dark green: viable (leakage ≤ %.2f, t₁₀ ≥ 5, t₉₀ ≤ 75 min);" % EPS_LEAK) + chr(10) + "light green: leakage met, t₉₀ not", fontsize=9.5)
 ax[1].plot(widths, np.maximum(leak, 1e-5), "o-", color="#2E5597", lw=2); ax[1].axhline(EPS_LEAK, color="red", ls="--")
 ax[1].set_xscale("log"); ax[1].set_yscale("log"); ax[1].set_ylim(5e-5, 0.1); ax[1].set_xlabel("Gate width w (°C)"); ax[1].set_ylabel("Storage conversion at %.0f°C, 150 min" % T_STORE)
 ax[1].set_title("(b) Storage criterion fixes the widest admissible gate"); ax[1].grid(alpha=0.25)

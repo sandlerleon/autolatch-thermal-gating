@@ -16,11 +16,14 @@ TOKEN = os.environ["ZENODO_TOKEN"]
 API = "https://zenodo.org/api"
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 STATE = os.path.join("C:" + os.sep, "YouTube", "_autolatch_zenodo_state.json")
-TAG, DRY = "v3.0.0", "--dry" in sys.argv
-NOTE = ("<p><strong>Version 3.</strong> Leaves every v2 number unchanged and adds four analyses that test the v2 conclusions: a capsule-population model in which the gate width "
+SUFFIX = os.environ.get("KEY_SUFFIX", "")
+TAG, DRY = os.environ.get("RELEASE_TAG", "v3.0.0"), "--dry" in sys.argv
+VER = TAG.lstrip("v")
+NOTE_V3 = ("<p><strong>Version 3.</strong> Leaves every v2 number unchanged and adds four analyses that test the v2 conclusions: a capsule-population model in which the gate width "
         "emerges from a spread of melting temperatures (w_eff ~ 0.55 sigma); a storage-stability objective with five tuned control families (Arrhenius, same energy balance) to test the "
         "Pareto claim; a design rule for the admissible melting-point spread; and Sobol variance attribution. The v2 constant-rate first-order control is superseded for the non-dominance "
         "claim. A status-of-claims table and two further falsifiable predictions are added. All results are model outputs under illustrative parameters.</p>")
+NOTE = NOTE_V3 if TAG == "v3.0.0" else "<p><strong>Version %s.</strong> %s</p>" % (VER, os.environ.get("EXTRA_NOTE", "Revised."))
 
 
 def req(method, url, data=None, raw=None, headers=None):
@@ -38,7 +41,7 @@ def req(method, url, data=None, raw=None, headers=None):
 
 
 def run(kind):
-    d = json.load(open(STATE))[kind]
+    d = json.load(open(STATE))[kind + SUFFIX]
     dep = req("GET", "%s/deposit/depositions/%s" % (API, d["id"]))
     for f in dep.get("files", []):
         try:
@@ -56,9 +59,9 @@ def run(kind):
             req("PUT", "%s/%s" % (d["bucket"], urllib.parse.quote(os.path.basename(f))), raw=fh.read(), headers={"Content-Type": "application/octet-stream"})
         print("   uploaded", os.path.basename(f), "%.0f kB" % (os.path.getsize(f) / 1024))
     meta = dep["metadata"]
-    meta["version"] = "3.0.0"
+    meta["version"] = VER
     meta["publication_date"] = "2026-10-06"
-    if "Version 3." not in meta.get("description", ""):
+    if "<strong>Version %s.</strong>" % (VER if TAG != "v3.0.0" else "3") not in meta.get("description", ""):
         meta["description"] = NOTE + meta.get("description", "")
     meta["prereserve_doi"] = {"doi": d["doi"]}
     req("PUT", "%s/deposit/depositions/%s" % (API, d["id"]), data={"metadata": meta})

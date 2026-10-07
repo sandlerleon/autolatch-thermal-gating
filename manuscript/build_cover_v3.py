@@ -44,7 +44,7 @@ for p in d.paragraphs:
     elif t.startswith("The manuscript is explicit throughout"):
         setp(p, t.replace("three falsifiable predictions", "five falsifiable predictions"))
     elif t.startswith("The complete simulation code"):
-        setp(p, t + " The present version is archived as https://doi.org/%s (code) and https://doi.org/%s (manuscript)." % (ZEN["code"]["doi"], ZEN["paper"]["doi"]))
+        setp(p, t + " The present version is archived as https://doi.org/%s (code) and https://doi.org/%s (manuscript)." % ((ZEN.get("code_v31") or ZEN["code"])["doi"], (ZEN.get("paper_v31") or ZEN["paper"])["doi"]))
 out = os.path.join(HERE, "AutoLatch_WileyMTS_Cover_Letter_Sandler_v3.docx")
 d.save(out)
 print("saved", out)

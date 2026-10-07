@@ -21,7 +21,7 @@ OUTF = os.path.join(HERE, "AutoLatch_ChemRxiv_WileyMTS_Manuscript_v3.docx")
 R3 = json.load(open(os.path.join(ROOT, "results_v3.json"), encoding="utf-8"))
 R2 = json.load(open(os.path.join(ROOT, "results_v2.json"), encoding="utf-8"))
 ZEN = json.load(open(os.path.join("C:" + os.sep, "YouTube", "_autolatch_zenodo_state.json")))
-SW_DOI, PP_DOI = ZEN["code"]["doi"], ZEN["paper"]["doi"]
+SW_DOI, PP_DOI = (ZEN.get("code_v31") or ZEN["code"])["doi"], (ZEN.get("paper_v31") or ZEN["paper"])["doi"]
 FIG = os.path.join(ROOT, "figures")
 
 d = docx.Document(SRC)
@@ -340,6 +340,38 @@ av = find("The complete integration, sweep, Monte Carlo")
 av.runs[0].text = av.text + (" The present version (v3) is archived as Zenodo software version https://doi.org/%s and manuscript version https://doi.org/%s; the concept DOIs above resolve to the latest versions." % (SW_DOI, PP_DOI))
 for r in av.runs[1:]:
     r._r.getparent().remove(r._r)
+
+# ================================================================== references: remove entries that cannot be verified, cite what the text uses
+# The three entries removed here (Bashir 2023; Zhang 2020; Gou 2021) resolve to no record in Crossref under the printed volume/page/DOI and were never cited in the text; Ryshkewitch 1953
+# is genuine but concerns porous-ceramic strength, which this paper does not treat. Replacements were harvested from Crossref.
+NEWREFS = [
+    "[1] Kamal, M. R.; Sourour, S. Kinetics and thermal characterization of thermoset cure. Polymer Engineering & Science 1973, 13(1), 59–64. https://doi.org/10.1002/pen.760130110",
+    "[2] Sourour, S.; Kamal, M. R. Differential scanning calorimetry of epoxy cure: isothermal cure kinetics. Thermochimica Acta 1976, 14, 41–59. https://doi.org/10.1016/0040-6031(76)80056-1",
+    "[3] Semenoff, N. Zur Theorie des Verbrennungsprozesses. Zeitschrift für Physik 1928, 48, 571–582. https://doi.org/10.1007/bf01340021",
+    "[4] Frank-Kamenetskii, D. A. Diffusion and Heat Transfer in Chemical Kinetics, 2nd ed.; Plenum Press: New York, 1969.",
+    "[5] White, S. R.; Sottos, N. R.; Geubelle, P. H.; Moore, J. S.; Kessler, M. R.; Sriram, S. R.; Brown, E. N.; Viswanathan, S. Autonomic healing of polymer composites. Nature 2001, 409, 794–797. https://doi.org/10.1038/35057232",
+    "[6] Jamekhorshid, A.; Sadrameli, S. M.; Farid, M. A review of microencapsulation methods of phase change materials (PCMs) as a thermal energy storage (TES) medium. Renewable and Sustainable Energy Reviews 2014, 31, 531–542. https://doi.org/10.1016/j.rser.2013.12.033",
+]
+ref_ps = [find("Kamal, M. R.; Sourour"), find("Bashir, M. A."), find("Ryshkewitch"), find("Zhang, X. et al."), find("Gou, J. et al.")]
+for p_, t_ in zip(ref_ps, NEWREFS[:5]):
+    for r_ in p_.runs[1:]:
+        r_._r.getparent().remove(r_._r)
+    p_.runs[0].text = t_
+clone_after(ref_ps[-1]._p, ref_ps[-1], NEWREFS[5])
+
+
+def add_after_text(prefix, find_str, add_str):
+    p_ = find(prefix)
+    for r_ in p_.runs:
+        if find_str in r_.text:
+            r_.text = r_.text.replace(find_str, find_str + add_str, 1)
+            return
+    raise KeyError(find_str)
+
+
+add_after_text("Controlling when and how quickly", "self-healing or set-on-demand materials", " [5, 6]")
+add_after_text("Autocatalytic reaction [Established form", "Kamal & Sourour 1973", " [1, 2]")
+add_after_text("ψ = ΔT_ad·Ea₂", "Frank-Kamenetskii/Semenov-type analyses", " [3, 4]")
 
 d.save(OUTF)
 print("saved", OUTF)

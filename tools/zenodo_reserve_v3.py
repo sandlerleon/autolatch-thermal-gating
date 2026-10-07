@@ -12,6 +12,7 @@ TOKEN = os.environ["ZENODO_TOKEN"]
 STATE = os.path.join("C:" + os.sep, "YouTube", "_autolatch_zenodo_state.json")
 API = "https://zenodo.org/api"
 CONCEPTS = {"code": 22073392, "paper": 22073390}
+SUFFIX = os.environ.get("KEY_SUFFIX", "")
 st = json.load(open(STATE)) if os.path.exists(STATE) else {}
 
 
@@ -21,7 +22,8 @@ def req(method, url):
         return json.load(resp)
 
 
-for kind, concept in CONCEPTS.items():
+for kind0, concept in CONCEPTS.items():
+    kind = kind0 + SUFFIX
     if kind in st:
         print("already reserved:", kind, st[kind]["doi"])
         continue

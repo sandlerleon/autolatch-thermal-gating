@@ -58,7 +58,8 @@ def run(kind):
     meta = dep["metadata"]
     meta["version"] = "3.0.0"
     meta["publication_date"] = "2026-10-06"
-    meta["description"] = NOTE + meta.get("description", "")
+    if "Version 3." not in meta.get("description", ""):
+        meta["description"] = NOTE + meta.get("description", "")
     meta["prereserve_doi"] = {"doi": d["doi"]}
     req("PUT", "%s/deposit/depositions/%s" % (API, d["id"]), data={"metadata": meta})
     print("   metadata written")

@@ -1,0 +1,368 @@
+{
+  "validation": {
+    "t10": 26.737863650376948,
+    "t90": 34.17427795346524,
+    "S": 0.2781229794693585,
+    "alpha25": 0.07217298747687237,
+    "overshoot": 111.66540346254112,
+    "v2": {
+      "t10": 26.75,
+      "t90": 34.2,
+      "S": 0.279,
+      "alpha25": 0.072,
+      "overshoot": 111.7
+    }
+  },
+  "coupled_point": {
+    "a25": 0.07217298747687237,
+    "t90": 34.17427795346524,
+    "a_store": 0.006323925322230031
+  },
+  "ungated_baseline": {
+    "a25": 0.28958709491462925,
+    "t90": 27.616904556737307,
+    "S": 0.3615238281576032,
+    "a_store": 0.7189650568350137,
+    "t50_store": 119.75414383319588
+  },
+  "population_sigma_Tm": {
+    "K": 61,
+    "w_capsule": 0.5,
+    "rows": [
+      {
+        "sigma": 0.0,
+        "a25": 0.07344592553659768,
+        "t90": 34.07730263992124,
+        "S": 0.27905413803207435,
+        "a_store": 2.3283249168707632e-07,
+        "overshoot": 111.67233534577986
+      },
+      {
+        "sigma": 1.0,
+        "a25": 0.07341384424317614,
+        "t90": 34.07961413358955,
+        "S": 0.279027496180947,
+        "a_store": 1.407509820601399e-06,
+        "overshoot": 111.67274408925928
+      },
+      {
+        "sigma": 2.0,
+        "a25": 0.07331628810979858,
+        "t90": 34.08694009416322,
+        "S": 0.2789569415451209,
+        "a_store": 7.23729420943738e-05,
+        "overshoot": 111.67684934515478
+      },
+      {
+        "sigma": 4.0,
+        "a25": 0.07289383794249514,
+        "t90": 34.118202762068734,
+        "S": 0.2786279501103886,
+        "a_store": 0.0033390037921476813,
+        "overshoot": 111.67103448219859
+      },
+      {
+        "sigma": 6.0,
+        "a25": 0.0720458154832277,
+        "t90": 34.18179056516328,
+        "S": 0.277971937142931,
+        "a_store": 0.009565614211193488,
+        "overshoot": 111.67356251788942
+      }
+    ],
+    "equivalent_width": [
+      {
+        "sigma": 0.0,
+        "w_analytic": 0.5,
+        "w_matched_storage": 0.4999076967016497
+      },
+      {
+        "sigma": 1.0,
+        "w_analytic": 0.7442872771497665,
+        "w_matched_storage": 0.5878000857714755
+      },
+      {
+        "sigma": 2.0,
+        "w_analytic": 1.210724660568229,
+        "w_matched_storage": 0.9553102748397969
+      },
+      {
+        "sigma": 4.0,
+        "w_analytic": 2.2612865397450657,
+        "w_matched_storage": 2.3389038751707276
+      },
+      {
+        "sigma": 6.0,
+        "w_analytic": 3.3455474639246234,
+        "w_matched_storage": 3.6347327406627663
+      }
+    ]
+  },
+  "population_release_time_cv": [
+    {
+      "cv": 0.0,
+      "a25": 0.07344592553659768,
+      "t90": 34.07730263992124,
+      "S": 0.27905413803207435
+    },
+    {
+      "cv": 0.25,
+      "a25": 0.07433998757413743,
+      "t90": 34.05875262205864,
+      "S": 0.28110935815619875
+    },
+    {
+      "cv": 0.5,
+      "a25": 0.07682100031546742,
+      "t90": 33.98706460825854,
+      "S": 0.28628344351576895
+    },
+    {
+      "cv": 1.0,
+      "a25": 0.08429031866243133,
+      "t90": 33.679561334039825,
+      "S": 0.29868046547051524
+    }
+  ],
+  "control_families": {
+    "F1a gated first-order, Ea_c = Ea2": {
+      "n": 50,
+      "n_physical": 50,
+      "n_converged": 44,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 7.189472448484431
+    },
+    "F1b gated first-order, Ea_c = Ea1": {
+      "n": 50,
+      "n_physical": 50,
+      "n_converged": 43,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 11.72033051683701
+    },
+    "F2 gated order n = 0.5": {
+      "n": 50,
+      "n_physical": 47,
+      "n_converged": 46,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 3.9563216120972156
+    },
+    "F2 gated order n = 2.0": {
+      "n": 50,
+      "n_physical": 50,
+      "n_converged": 31,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 29.33910288443247
+    },
+    "F2 gated order n = 3.0": {
+      "n": 50,
+      "n_physical": 50,
+      "n_converged": 16,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 93.7927293050788
+    },
+    "F3 ungated autocatalytic, A2 tuned": {
+      "n": 60,
+      "n_physical": 60,
+      "n_converged": 28,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 20.88094524728486
+    },
+    "F4 gated first-order, tuned release time": {
+      "n": 240,
+      "n_physical": 240,
+      "n_converged": 203,
+      "dominates_on_2_axes": 0,
+      "dominates_on_3_axes": 0,
+      "confirmed_by_LSODA": 0,
+      "min_worst_relative_gap": 2.924564259782894
+    },
+    "F5 gated autocatalytic, A2 and release time tuned": {
+      "n": 200,
+      "n_physical": 200,
+      "n_converged": 156,
+      "dominates_on_2_axes": 9,
+      "dominates_on_3_axes": 9,
+      "confirmed_by_LSODA": 9,
+      "min_worst_relative_gap": -0.13915025015008198
+    }
+  },
+  "control_note": "Arrhenius first-order/nth-order controls use Ea_c as stated and the same gate and energy balance as the coupled system",
+  "design_map": {
+    "widths": [
+      0.5,
+      1.0,
+      2.0,
+      3.0,
+      5.0,
+      8.0,
+      12.0,
+      16.0,
+      20.0
+    ],
+    "T_ops": [
+      122.0,
+      126.0,
+      130.0,
+      134.0,
+      138.0,
+      142.0,
+      146.0,
+      150.0,
+      154.0,
+      158.0,
+      162.0,
+      166.0,
+      170.0
+    ],
+    "leakage": [
+      2.3283249168707627e-07,
+      9.589783136224895e-05,
+      0.0020829741778592785,
+      0.006323925322230031,
+      0.016758811283280935,
+      0.030193637890992563,
+      0.04222458411400999,
+      0.04995502773727923,
+      0.05523715978834143
+    ],
+    "eps_leak": 0.01,
+    "viable_fraction": 0.37606837606837606,
+    "window_by_width": {
+      "0.5": [
+        130.0,
+        170.0
+      ],
+      "1.0": [
+        130.0,
+        170.0
+      ],
+      "2.0": [
+        130.0,
+        170.0
+      ],
+      "3.0": [
+        130.0,
+        170.0
+      ],
+      "5.0": null,
+      "8.0": null,
+      "12.0": null,
+      "16.0": null,
+      "20.0": null
+    },
+    "widest_viable_gate": 3.0,
+    "peak_overshoot_range": [
+      6.8385267331721025,
+      182.6590793969484
+    ]
+  },
+  "design_rule": [
+    {
+      "margin": 3.0,
+      "eps": 0.001,
+      "w_star": 0.7820792897855591,
+      "sigma_star": 1.1761796657771204
+    },
+    {
+      "margin": 3.0,
+      "eps": 0.01,
+      "w_star": 1.6769537638137015,
+      "sigma_star": 2.665595803147706
+    },
+    {
+      "margin": 3.0,
+      "eps": 0.05,
+      "w_star": 4.711572881787113,
+      "sigma_star": 7.534669151442893
+    },
+    {
+      "margin": 6.0,
+      "eps": 0.001,
+      "w_star": 1.625008445433565,
+      "sigma_star": 2.9041637708320107
+    },
+    {
+      "margin": 6.0,
+      "eps": 0.01,
+      "w_star": 3.716917528559841,
+      "sigma_star": 6.130505657636131
+    },
+    {
+      "margin": 6.0,
+      "eps": 0.05,
+      "w_star": 16.030536777269614,
+      "sigma_star": 25.653262219063713
+    },
+    {
+      "margin": 10.0,
+      "eps": 0.001,
+      "w_star": 2.858886225299979,
+      "sigma_star": 5.2205181048691225
+    },
+    {
+      "margin": 10.0,
+      "eps": 0.01,
+      "w_star": 7.360454279373419,
+      "sigma_star": 12.091290444048944
+    },
+    {
+      "margin": 10.0,
+      "eps": 0.05,
+      "w_star": null,
+      "sigma_star": null
+    }
+  ],
+  "design_rule_T_min_t90_75": 129.4395246858019,
+  "sobol": {
+    "N_base": 2048,
+    "runs": 22528,
+    "censored_fraction": 0.1767578125,
+    "names": [
+      "Ea1",
+      "Ea2",
+      "A2",
+      "m",
+      "n",
+      "T_melt offset",
+      "tau_release",
+      "tau_thermal",
+      "DT_ad"
+    ],
+    "S1": [
+      0.05531172290951901,
+      0.6246495398325593,
+      0.07906387817610587,
+      0.07721314462810944,
+      0.00965899945612942,
+      0.014775991664524417,
+      0.012771772014950115,
+      0.021640276963753126,
+      0.01634092387865808
+    ],
+    "ST": [
+      0.08308187340501974,
+      0.763415900593043,
+      0.1682125809658438,
+      0.13223885971187535,
+      0.047118470593168614,
+      0.0002648141123374995,
+      0.00367862335442637,
+      0.0935238732616316,
+      0.034767345982326746
+    ],
+    "sum_S1": 0.9114262495243088,
+    "interaction_share": 0.08857375047569116
+  }
+}
